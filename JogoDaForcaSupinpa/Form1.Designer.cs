@@ -99,7 +99,7 @@
             pictureBox1.Size = new Size(757, 442);
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
-            pictureBox1.Click += pictureBox1_Click;
+           
             // 
             // lb_braco1
             // 
@@ -555,7 +555,7 @@
             pictureBox3.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox3.TabIndex = 0;
             pictureBox3.TabStop = false;
-            pictureBox3.Click += pictureBox3_Click;
+            
             // 
             // label1
             // 
@@ -581,7 +581,7 @@
             maskedTextBox1.Name = "maskedTextBox1";
             maskedTextBox1.Size = new Size(70, 36);
             maskedTextBox1.TabIndex = 50;
-            maskedTextBox1.MaskInputRejected += maskedTextBox1_MaskInputRejected;
+            
             // 
             // label2
             // 
@@ -653,7 +653,7 @@
             label7.Size = new Size(145, 21);
             label7.TabIndex = 57;
             label7.Text = "Palavra Aleatoria";
-            label7.Click += label7_Click;
+           
             // 
             // label8
             // 
@@ -725,7 +725,7 @@
             txt_PalavraSecreta.Name = "txt_PalavraSecreta";
             txt_PalavraSecreta.Size = new Size(14, 23);
             txt_PalavraSecreta.TabIndex = 64;
-            txt_PalavraSecreta.TextChanged += textBox1_TextChanged;
+           
             // 
             // pictureBox4
             // 
@@ -816,7 +816,7 @@
             MinimumSize = new Size(774, 481);
             Name = "telaPrincipal";
             Text = "JOGO DA FORCA GURIZADA";
-            Load += telaPrincipal_Load;
+          
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();

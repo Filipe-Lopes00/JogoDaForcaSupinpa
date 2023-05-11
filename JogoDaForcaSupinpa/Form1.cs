@@ -56,40 +56,128 @@ namespace JogoDaForcaSupinpa
             return palavra;
         }
 
-        private void telaPrincipal_Load(object sender, EventArgs e)
+
+
+        private void bt_tentar_Click(object sender, EventArgs e)
         {
+            //verificar se a letra ja foi encontrada
+            letra = maskedTextBox1.Text[0];
+            for (int cont = 0; cont != quantidade; cont++)
+            {
+                if (letra == escondido[cont])
+                {
+                    tenta = true;
+                }
+
+            }
+            // codigo que verifica se a letra ja foi tentada
+            tentadas = lb_tentativas.Text;
+            int quant = tentadas.Length;
+            for (int cont = 0; cont != quant; cont++)
+            {
+                if (letra == tentadas[cont])
+                {
+                    tenta = true;
+                }
+
+            }
+            if (tenta == true)
+            {
+                MessageBox.Show("Voce ja digitou essa letra");
+            }
+            else
+            {
+                //codigo q procura letra na palavra escondida
+                for (int cont = 0; cont != quantidade; cont++)
+                {
+                    if (letra == palavra1[cont])
+                    {
+                        escondido[cont] = letra;
+                        achou = true;
+                        faltam = faltam - 1;
+                    }
+                }
+            }
+            //reiniciando  a palavra  exibida  no form
+            lb_palavra.Text = "";
+            for (int cont = 0; cont != quantidade; cont++)
+            {
+                lb_palavra.Text = lb_palavra.Text + escondido[cont];
+            }
+            //em caso de vitoria
+
+            if (faltam == 0)
+            {
+                MessageBox.Show("Parabens seu NOIA! vOCE venceu");
+
+
+                bt_Start.Enabled = true;
+                txt_PalavraSecreta.Enabled = true;
+                maskedTextBox1.Enabled = false;
+                bt_tentar.Enabled = false;
+                txt_PalavraSecreta.Text = "";
+                txt_PalavraSecreta.Focus();
+
+
+            }
+            //atualizar letras tentadas
+
+            if ((achou == false) & (tenta == false))
+            {
+                erros++;
+                lb_tentativas.Text = lb_tentativas.Text + " " + letra;
+
+            }
+            //atualizar exibicao do boneco
+            if (erros == 1)
+            {
+                lb_cabeca.Visible = true;
+
+            }
+            if (erros == 2)
+            {
+                lb_coluna.Visible = true;
+            }
+            if (erros == 3)
+            {
+                lb_braco1.Visible = true;
+            }
+            if (erros == 4)
+            {
+                lb_pernas.Visible = true;
+            }
+            if (erros == 5)
+            {
+                lb_braco2.Visible = true;
+
+                MessageBox.Show("PERDEU VACILAO!!!");
+                bt_Start.Enabled = true;
+                txt_PalavraSecreta.Enabled = true;
+                maskedTextBox1.Enabled = false;
+                bt_tentar.Enabled = false;
+                txt_PalavraSecreta.Text = "";
+                txt_PalavraSecreta.Focus();
+            }
+
+            //REINICIAR AS VARIAVEIS DE COMPARACAO
+            tenta = false;
+            achou = false;
+            maskedTextBox1.Text = "";
+            maskedTextBox1.Focus();
+
+            lb_faltam.Text = faltam.ToString();
+            lb_erros.Text = erros.ToString();
 
         }
-        private void lb_cabeca_Click(object sender, EventArgs e)
-        {
 
+
+        private void bt_sair_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Deseja sair da aplicaçao ?", "SAIR", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No) return;
+            Application.Exit();
         }
 
-        private void lb_coluna_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lb_braco2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lb_braco1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lb_pernas_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lb_Boneco_Click(object sender, EventArgs e)
-        {
-
-        }
-
+      
         private void bt_iniciar_Click(object sender, EventArgs e)
         {
             palavra1 = PalavraAleatoria();
@@ -117,27 +205,7 @@ namespace JogoDaForcaSupinpa
             lb_erros.Text = erros.ToString();
 
 
-
-
-
-
-        }
-
-        private void bt_sair_Click(object sender, EventArgs e)
-        {
-            if (MessageBox.Show("Deseja sair da aplicaçao ?", "SAIR", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No) return;
-            Application.Exit();
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
+        }     
 
 
 
@@ -270,158 +338,8 @@ namespace JogoDaForcaSupinpa
         {
 
             maskedTextBox1.Text += "M";
-        }
+        }      
 
-
-
-
-        private void txt_ContadorDeErros_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txt_PalavraSecretaCerta_TextChanged(object sender, EventArgs e)
-        {
-
-
-        }
-
-        private void maskedTextBox1_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
-        {
-
-        }
-
-        private void txt_PalavraSecreta_TextChanged_1(object sender, EventArgs e)
-        {
-
-
-        }
-
-        private void bt_tentar_Click(object sender, EventArgs e)
-        {
-            //verificar se a letra ja foi encontrada
-            letra = maskedTextBox1.Text[0];
-            for (int cont = 0; cont != quantidade; cont++)
-            {
-                if (letra == escondido[cont])
-                {
-                    tenta = true;
-                }
-
-            }
-            // codigo que verifica se a letra ja foi tentada
-            tentadas = lb_tentativas.Text;
-            int quant = tentadas.Length;
-            for (int cont = 0; cont != quant; cont++)
-            {
-                if (letra == tentadas[cont])
-                {
-                    tenta = true;
-                }
-
-            }
-            if (tenta == true)
-            {
-                MessageBox.Show("Voce ja digitou essa letra");
-            }
-            else
-            {
-                //codigo q procura letra na palavra escondida
-                for (int cont = 0; cont != quantidade; cont++)
-                {
-                    if (letra == palavra1[cont])
-                    {
-                        escondido[cont] = letra;
-                        achou = true;
-                        faltam = faltam - 1;
-                    }
-                }
-            }
-            //reiniciando  a palavra  exibida  no form
-            lb_palavra.Text = "";
-            for (int cont = 0; cont != quantidade; cont++)
-            {
-                lb_palavra.Text = lb_palavra.Text + escondido[cont];
-            }
-            //em caso de vitoria
-
-            if (faltam == 0)
-            {
-                MessageBox.Show("Parabens seu NOIA! vOCE venceu");
-
-
-                bt_Start.Enabled = true;
-                txt_PalavraSecreta.Enabled = true;
-                maskedTextBox1.Enabled = false;
-                bt_tentar.Enabled = false;
-                txt_PalavraSecreta.Text = "";
-                txt_PalavraSecreta.Focus();
-
-
-            }
-            //atualizar letras tentadas
-
-            if ((achou == false) & (tenta == false))
-            {
-                erros++;
-                lb_tentativas.Text = lb_tentativas.Text + " " + letra;
-
-            }
-            //atualizar exibicao do boneco
-            if (erros == 1)
-            {
-                lb_cabeca.Visible = true;
-
-            }
-            if (erros == 2)
-            {
-                lb_coluna.Visible = true;
-            }
-            if (erros == 3)
-            {
-                lb_braco1.Visible = true;
-            }
-            if (erros == 4)
-            {
-                lb_pernas.Visible = true;
-            }
-            if (erros == 5)
-            {
-                lb_braco2.Visible = true;
-
-                MessageBox.Show("PERDEU VACILAO!!!");
-                bt_Start.Enabled = true;
-                txt_PalavraSecreta.Enabled = true;
-                maskedTextBox1.Enabled = false;
-                bt_tentar.Enabled = false;
-                txt_PalavraSecreta.Text = "";
-                txt_PalavraSecreta.Focus();
-            }
-
-            //REINICIAR AS VARIAVEIS DE COMPARACAO
-            tenta = false;
-            achou = false;
-            maskedTextBox1.Text = "";
-            maskedTextBox1.Focus();
-
-            lb_faltam.Text = faltam.ToString();
-            lb_erros.Text = erros.ToString();
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pictureBox3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label7_Click(object sender, EventArgs e)
-        {
-
-        }
+       
     }
 }
